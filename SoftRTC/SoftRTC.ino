@@ -143,21 +143,13 @@ void readTime(){
 
 /**
  * @brief Software reset of ESP 
- * @details Software reset without losing time
+ * @details Software reset without losing time. It works in esp8266
  */
 void softResetForTime(){
-    if ( (hours == 4) || (hours == 10) || (hours == 16) || (hours == 22) ) {
-      if ((minutes==5) && !upReset) {
-          EEPROM.write(LOCMYRESET, SOFTRESET);
-          storeTime();
-          delay(1);
-          ESP.reset();
-      } else if (minutes==6){
-         upReset = false;
-      }
-    } else {
-      upReset = false;
-    }
+    EEPROM.write(LOCMYRESET, SOFTRESET);
+    storeTime();
+    delay(1);
+    ESP.reset();
 }
 
 /**
@@ -170,7 +162,7 @@ void setTimeAfterReset(){
       EEPROM.write(LOCMYRESET, 0);
       EEPROM.commit();
       timeSync = true;
-      Serial.println("\n Iniciando del soft reset ");
+      Serial.println("\n Start after of soft reset ");
   }
   upReset = true;
 }
