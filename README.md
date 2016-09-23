@@ -1,2 +1,2 @@
 # softRTC
-Sotware RTC with ESP8266 (Arduino)
+Sotware RTC with Arduino (ESP8266 without Internet)
